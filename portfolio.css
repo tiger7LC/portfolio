@@ -1,0 +1,175 @@
+:root {
+  --neon: #00ffff;
+  --dark: #05060a;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: radial-gradient(circle at top, #0f2027, #05060a);
+  color: white;
+  overflow-x: hidden;
+}
+
+/* Film grain */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 999;
+}
+
+/* Cursor */
+.cursor {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--neon);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+}
+
+/* Navbar */
+header {
+  position: fixed;
+  width: 100%;
+  padding: 15px 60px;
+  display: flex;
+  justify-content: space-between;
+  backdrop-filter: blur(10px);
+  z-index: 100;
+}
+
+nav a {
+  margin-left: 25px;
+  color: white;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: var(--neon);
+}
+
+/* Hero */
+.hero {
+  height: 100vh;
+  position: relative;
+}
+
+canvas {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  top: 35%;
+  text-align: center;
+  animation: cinematicIntro 1.6s ease forwards;
+}
+
+.subtitle {
+  letter-spacing: 6px;
+  opacity: 0.7;
+}
+
+.title {
+  font-size: 4rem;
+}
+
+.glow {
+  text-shadow: 0 0 15px rgba(0,255,255,0.6);
+}
+
+/* Buttons */
+.btn {
+  padding: 12px 28px;
+  margin: 10px;
+  border-radius: 30px;
+  background: linear-gradient(45deg, cyan, blue);
+  color: black;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn.outline {
+  background: transparent;
+  border: 1px solid var(--neon);
+  color: var(--neon);
+}
+
+/* Glass */
+.glass {
+  backdrop-filter: blur(15px);
+  background: rgba(255,255,255,0.06);
+  padding: 60px;
+  margin: 80px;
+  border-radius: 20px;
+}
+
+/* Cards */
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 260px;
+  padding: 30px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 16px;
+  transition: 0.6s;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: -100%;
+  background: linear-gradient(120deg, transparent, rgba(0,255,255,0.2), transparent);
+  transition: 0.6s;
+}
+
+.card:hover::before {
+  inset: 0;
+}
+
+.card:hover {
+  transform: perspective(1000px) rotateX(6deg) rotateY(-6deg) translateY(-15px);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  opacity: 0.6;
+}
+
+/* Animations */
+@keyframes cinematicIntro {
+  from {
+    opacity: 0;
+    transform: translateY(60px) scale(0.96);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
